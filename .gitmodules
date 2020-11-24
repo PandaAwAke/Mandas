@@ -1,0 +1,3 @@
+[submodule "Mandas/vendor/spdlog"]
+	path = Mandas/vendor/spdlog
+	url = https://github.com/gabime/spdlog
