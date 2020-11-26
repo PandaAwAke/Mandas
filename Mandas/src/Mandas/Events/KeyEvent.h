@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 #define KeyCode int
 
 namespace Mandas {

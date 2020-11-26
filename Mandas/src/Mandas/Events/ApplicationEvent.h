@@ -2,8 +2,6 @@
 
 #include "Mandas/Events/Event.h"
 
-#include <sstream>
-
 namespace Mandas {
 
 	class MANDAS_API WindowResizeEvent : public Event

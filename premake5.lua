@@ -18,6 +18,9 @@ project "Mandas"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "mdpch.h"
+	pchsource "Mandas/src/mdpch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",

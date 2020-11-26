@@ -2,9 +2,6 @@
 
 #include "Mandas/Core.h"
 
-#include <string>
-#include <functional>
-
 namespace Mandas {
 
 	// Events in Mandas are currently blocking, meaning when an event occurs it
