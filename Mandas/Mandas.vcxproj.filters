@@ -7,6 +7,12 @@
     <Filter Include="Mandas\Events">
       <UniqueIdentifier>{DD43EDCA-4904-6901-123F-B27E7EBEADDD}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Mandas\Platform">
+      <UniqueIdentifier>{8DB66B57-F941-D91B-0253-5C106E5D351C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Mandas\Platform\Windows">
+      <UniqueIdentifier>{C79D59B9-33D5-A150-3CDF-0574A895C849}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Mandas.h" />
@@ -34,6 +40,12 @@
     <ClInclude Include="src\Mandas\Log.h">
       <Filter>Mandas</Filter>
     </ClInclude>
+    <ClInclude Include="src\Mandas\Platform\Windows\WindowsWindow.h">
+      <Filter>Mandas\Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mandas\Window.h">
+      <Filter>Mandas</Filter>
+    </ClInclude>
     <ClInclude Include="src\mdpch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +54,9 @@
     </ClCompile>
     <ClCompile Include="src\Mandas\Log.cpp">
       <Filter>Mandas</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mandas\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Mandas\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\mdpch.cpp" />
   </ItemGroup>

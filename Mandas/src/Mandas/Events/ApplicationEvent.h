@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Mandas/Events/Event.h"
+#include "Event.h"
 
 namespace Mandas {
 
