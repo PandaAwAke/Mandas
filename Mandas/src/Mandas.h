@@ -3,6 +3,7 @@
 // For use by Mandas Applications
 
 #include "Mandas/Application.h"
+#include "Mandas/Layer.h"
 #include "Mandas/Log.h"
 
 // --- Entry Point ------------------------

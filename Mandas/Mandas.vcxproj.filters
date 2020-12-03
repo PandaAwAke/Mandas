@@ -37,6 +37,12 @@
     <ClInclude Include="src\Mandas\Events\MouseEvent.h">
       <Filter>Mandas\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Mandas\Layer.h">
+      <Filter>Mandas</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mandas\LayerStack.h">
+      <Filter>Mandas</Filter>
+    </ClInclude>
     <ClInclude Include="src\Mandas\Log.h">
       <Filter>Mandas</Filter>
     </ClInclude>
@@ -50,6 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Mandas\Application.cpp">
+      <Filter>Mandas</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mandas\Layer.cpp">
+      <Filter>Mandas</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mandas\LayerStack.cpp">
       <Filter>Mandas</Filter>
     </ClCompile>
     <ClCompile Include="src\Mandas\Log.cpp">
