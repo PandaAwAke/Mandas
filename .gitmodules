@@ -1,3 +1,6 @@
 [submodule "Mandas/vendor/spdlog"]
 	path = Mandas/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Mandas/vendor/ImGui"]
+	path = Mandas/vendor/ImGui
+	url = https://github.com/PandaAwAke/imgui.git
