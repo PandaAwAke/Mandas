@@ -54,7 +54,7 @@
       <Filter>Mandas\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Mandas\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGlRenderer.h" />
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Mandas\Application.cpp">
@@ -74,6 +74,6 @@
       <Filter>Mandas\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Mandas\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGlRenderer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
   </ItemGroup>
 </Project>

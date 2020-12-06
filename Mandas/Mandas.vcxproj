@@ -164,7 +164,7 @@
     <ClInclude Include="src\Mandas\Layer.h" />
     <ClInclude Include="src\Mandas\LayerStack.h" />
     <ClInclude Include="src\Mandas\Log.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGlRenderer.h" />
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Mandas\Window.h" />
     <ClInclude Include="src\mdpch.h" />
@@ -175,7 +175,7 @@
     <ClCompile Include="src\Mandas\Layer.cpp" />
     <ClCompile Include="src\Mandas\LayerStack.cpp" />
     <ClCompile Include="src\Mandas\Log.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGlRenderer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\mdpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
