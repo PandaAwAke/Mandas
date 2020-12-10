@@ -12,12 +12,13 @@ public:
 	
 	void OnUpdate() override
 	{
-		MD_INFO("ExampleLayer::Update");
+		
 	}
 
 	void OnEvent(Mandas::Event& event) override
 	{
 		MD_TRACE("{0}", event);
+		
 	}
 
 };
