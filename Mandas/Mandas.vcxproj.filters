@@ -7,11 +7,17 @@
     <Filter Include="Mandas\Events">
       <UniqueIdentifier>{DD43EDCA-4904-6901-123F-B27E7EBEADDD}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Mandas\Platform">
-      <UniqueIdentifier>{8DB66B57-F941-D91B-0253-5C106E5D351C}</UniqueIdentifier>
+    <Filter Include="Mandas\ImGui">
+      <UniqueIdentifier>{03728063-EFD4-0F08-985A-48BE849CDB8A}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Mandas\Platform\Windows">
-      <UniqueIdentifier>{C79D59B9-33D5-A150-3CDF-0574A895C849}</UniqueIdentifier>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGL">
+      <UniqueIdentifier>{1E7D2C1D-8A08-9AE1-9319-1DD6FF23F6E1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -37,6 +43,12 @@
     <ClInclude Include="src\Mandas\Events\MouseEvent.h">
       <Filter>Mandas\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Mandas\ImGui\ImGuiLayer.h">
+      <Filter>Mandas\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mandas\Input.h">
+      <Filter>Mandas</Filter>
+    </ClInclude>
     <ClInclude Include="src\Mandas\Layer.h">
       <Filter>Mandas</Filter>
     </ClInclude>
@@ -49,16 +61,23 @@
     <ClInclude Include="src\Mandas\Window.h">
       <Filter>Mandas</Filter>
     </ClInclude>
-    <ClInclude Include="src\mdpch.h" />
-    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
-      <Filter>Mandas\Platform\Windows</Filter>
+    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h">
+      <Filter>Platform\OpenGL</Filter>
     </ClInclude>
-    <ClInclude Include="src\Mandas\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mdpch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Mandas\Application.cpp">
       <Filter>Mandas</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mandas\ImGui\ImGuiLayer.cpp">
+      <Filter>Mandas\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Mandas\Layer.cpp">
       <Filter>Mandas</Filter>
@@ -69,11 +88,15 @@
     <ClCompile Include="src\Mandas\Log.cpp">
       <Filter>Mandas</Filter>
     </ClCompile>
-    <ClCompile Include="src\mdpch.cpp" />
-    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
-      <Filter>Mandas\Platform\Windows</Filter>
+    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp">
+      <Filter>Platform\OpenGL</Filter>
     </ClCompile>
-    <ClCompile Include="src\Mandas\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mdpch.cpp" />
   </ItemGroup>
 </Project>
