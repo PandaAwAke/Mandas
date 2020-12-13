@@ -4,8 +4,10 @@
 
 #include "Window.h"
 #include "Mandas/LayerStack.h"
-#include "Events/Event.h"
+#include "Mandas/Events/Event.h"
 #include "Mandas/Events/ApplicationEvent.h"
+
+#include "Mandas/ImGui/ImGuiLayer.h"
 
 namespace Mandas {
 
@@ -29,6 +31,7 @@ namespace Mandas {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:

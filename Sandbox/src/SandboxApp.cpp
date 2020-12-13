@@ -1,6 +1,8 @@
 #include "mdpch.h"
 #include <Mandas.h>
 
+#include "ImGui/imgui.h"
+
 class ExampleLayer : public Mandas::Layer
 {
 public:
@@ -11,6 +13,11 @@ public:
 	}
 	
 	void OnUpdate() override
+	{
+		
+	}
+
+	virtual void OnImGuiRender() override
 	{
 		
 	}
@@ -29,7 +36,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Mandas::ImGuiLayer());
 	}
 
 	~Sandbox()
