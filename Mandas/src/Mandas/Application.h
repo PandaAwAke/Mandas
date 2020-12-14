@@ -11,7 +11,7 @@
 
 namespace Mandas {
 
-	class MANDAS_API Application
+	class Application
 	{
 	public:
 		Application();

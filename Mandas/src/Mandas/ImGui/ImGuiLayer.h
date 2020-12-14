@@ -7,7 +7,7 @@
 #include "Mandas/Events/MouseEvent.h"
 
 namespace Mandas {
-	class MANDAS_API ImGuiLayer : public Layer
+	class ImGuiLayer : public Layer
 	{
 	public:
 		ImGuiLayer();

@@ -7,7 +7,7 @@
 
 namespace Mandas {
 
-	class MANDAS_API LayerStack
+	class LayerStack
 	{
 	public:
 		LayerStack() = default;

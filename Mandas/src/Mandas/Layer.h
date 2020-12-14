@@ -5,7 +5,7 @@
 
 namespace Mandas {
 
-	class MANDAS_API Layer
+	class Layer
 	{
 	public:
 		Layer(const std::string& name = "Layer");
