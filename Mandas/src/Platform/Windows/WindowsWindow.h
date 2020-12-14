@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Mandas/Window.h"
+#include "Mandas/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
+
 
 namespace Mandas {
 
@@ -28,6 +30,7 @@ namespace Mandas {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{

@@ -3,9 +3,9 @@
 #ifdef MD_PLATFORM_WINDOWS
 #if MD_DYNAMIC_LINK
 	#ifdef MD_BUILD_DLL
-		#define __declspec(dllexport)
+		#define MANDAS_API __declspec(dllexport)
 	#else
-		#define __declspec(dllimport)
+		#define MANDAS_API __declspec(dllimport)
 	#endif
 #else
 	#define MANDAS_API
