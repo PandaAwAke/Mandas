@@ -1,6 +1,5 @@
 #include "mdpch.h"
 #include "WindowsWindow.h"
-#include "Mandas/Log.h"
 
 #include "Mandas/Events/ApplicationEvent.h"
 #include "Mandas/Events/MouseEvent.h"

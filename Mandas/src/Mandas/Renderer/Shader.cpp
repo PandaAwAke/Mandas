@@ -1,6 +1,5 @@
 #include "mdpch.h"
 #include "Shader.h"
-#include "Mandas/Log.h"
 
 #include <glad/glad.h>
 
