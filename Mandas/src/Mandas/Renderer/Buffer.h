@@ -67,7 +67,6 @@ namespace Mandas {
 		}
 	};
 
-	// Pure Interfaces
 	class BufferLayout
 	{
 	public:
@@ -101,6 +100,8 @@ namespace Mandas {
 		uint32_t m_Stride = 0;
 	};
 
+
+	// Pure Interfaces
 	class VertexBuffer
 	{
 	public:
