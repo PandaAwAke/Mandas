@@ -143,6 +143,7 @@
     <ClInclude Include="src\Mandas.h" />
     <ClInclude Include="src\Mandas\Application.h" />
     <ClInclude Include="src\Mandas\Core.h" />
+    <ClInclude Include="src\Mandas\Core\Timestep.h" />
     <ClInclude Include="src\Mandas\EntryPoint.h" />
     <ClInclude Include="src\Mandas\Events\ApplicationEvent.h" />
     <ClInclude Include="src\Mandas\Events\Event.h" />

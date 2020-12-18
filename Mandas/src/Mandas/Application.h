@@ -7,6 +7,8 @@
 #include "Mandas/Events/Event.h"
 #include "Mandas/Events/ApplicationEvent.h"
 
+#include "Mandas/Core/Timestep.h"
+
 #include "Mandas/ImGui/ImGuiLayer.h"
 
 namespace Mandas {
@@ -30,11 +32,12 @@ namespace Mandas {
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
 
+	private:
 		std::unique_ptr<Window> m_Window;
 		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
+		float m_LastFrameTime = 0.0f;
 	private:
 		static Application* s_Instance;
 	};
