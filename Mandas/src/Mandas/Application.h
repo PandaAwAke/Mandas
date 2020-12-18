@@ -13,6 +13,8 @@
 #include "Mandas/Renderer/Buffer.h"
 #include "Mandas/Renderer/VertexArray.h"
 
+#include "Mandas/Renderer/OrthographicCamera.h"
+
 namespace Mandas {
 
 	class Application
@@ -44,6 +46,8 @@ namespace Mandas {
 
 		std::shared_ptr<Shader> m_BlueShader;
 		std::shared_ptr<VertexArray> m_SquareVA;
+
+		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};
