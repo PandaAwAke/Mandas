@@ -12,6 +12,18 @@
 
 #include "Mandas/ImGui/ImGuiLayer.h"
 
+// --- Renderer ---------------------------
+#include "Mandas/Renderer/Renderer.h"
+#include "Mandas/Renderer/RenderCommand.h"
+
+#include "Mandas/Renderer/Buffer.h"
+#include "Mandas/Renderer/Shader.h"
+#include "Mandas/Renderer/VertexArray.h"
+
+#include "Mandas/Renderer/OrthographicCamera.h"
+// ----------------------------------------
+
+
 // --- Entry Point ------------------------
 #include "Mandas/EntryPoint.h"
 // ----------------------------------------

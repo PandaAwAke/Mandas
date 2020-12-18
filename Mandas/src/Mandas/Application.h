@@ -9,12 +9,6 @@
 
 #include "Mandas/ImGui/ImGuiLayer.h"
 
-#include "Mandas/Renderer/Shader.h"
-#include "Mandas/Renderer/Buffer.h"
-#include "Mandas/Renderer/VertexArray.h"
-
-#include "Mandas/Renderer/OrthographicCamera.h"
-
 namespace Mandas {
 
 	class Application
@@ -41,13 +35,6 @@ namespace Mandas {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		std::shared_ptr<Shader> m_BlueShader;
-		std::shared_ptr<VertexArray> m_SquareVA;
-
-		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};
