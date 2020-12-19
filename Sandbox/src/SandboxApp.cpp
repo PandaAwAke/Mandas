@@ -4,6 +4,9 @@
 #include "ImGui/imgui.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
+#include "Platform/OpenGL/OpenGLShader.h"
 
 class ExampleLayer : public Mandas::Layer
 {
@@ -18,7 +21,7 @@ public:
 			 0.5f, -0.5f,  0.0f,  0.2f,  0.3f,  0.8f,  1.0f,
 			 0.0f,  0.5f,  0.0f,  0.8f,  0.8f,  0.2f,  1.0f
 		};
-		std::shared_ptr<Mandas::VertexBuffer> vertexBuffer;
+		Mandas::Ref<Mandas::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Mandas::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		Mandas::BufferLayout layout = {
@@ -31,7 +34,7 @@ public:
 
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<Mandas::IndexBuffer> indexBuffer;
+		Mandas::Ref<Mandas::IndexBuffer> indexBuffer;
 		indexBuffer.reset(Mandas::IndexBuffer::Create(indices, 3));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -43,7 +46,7 @@ public:
 			-0.5f,  0.5f,  0.0f
 		};
 		m_SquareVA.reset(Mandas::VertexArray::Create());
-		std::shared_ptr<Mandas::VertexBuffer> squareVB;
+		Mandas::Ref<Mandas::VertexBuffer> squareVB;
 		squareVB.reset(Mandas::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
 			{ Mandas::ShaderDataType::Float3, "a_Position" }
@@ -51,7 +54,7 @@ public:
 		// This should behind "SetLayout."
 		m_SquareVA->AddVertexBuffer(squareVB);
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<Mandas::IndexBuffer> squareIB;
+		Mandas::Ref<Mandas::IndexBuffer> squareIB;
 		squareIB.reset(Mandas::IndexBuffer::Create(squareIndices, 6));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -90,9 +93,9 @@ public:
 				color = v_Color;
 			}
 		)";
-		m_Shader.reset(new Mandas::Shader(vertexSrc, fragmentSrc));
+		m_Shader.reset(Mandas::Shader::Create(vertexSrc, fragmentSrc));
 
-		std::string blueShaderVertexSrc = R"(
+		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
@@ -109,21 +112,22 @@ public:
 			}
 		)";
 
-		std::string blueShaderFragmentSrc = R"(
+		std::string flatColorShaderFragmentSrc = R"(
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
 			
 			in vec3 v_Position;
-			in vec4 v_Color;
+			
+			uniform vec3 u_Color;
 			
 			void main()
 			{
-				color = vec4(0.2, 0.3, 0.8, 1.0);
+				color = vec4(u_Color, 1.0);
 			}
 		)";
 
-		m_BlueShader.reset(new Mandas::Shader(blueShaderVertexSrc, blueShaderFragmentSrc));
+		m_FlatColorShader.reset(Mandas::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
 
 	}
 	
@@ -154,6 +158,18 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 		
+
+		//Mandas::MaterialRef material = new Mandas::Material(m_FlatColorShader);
+		//Mandas::MaterialInstanceRef mi = new Mandas::MaterialInstance(material);
+
+		//mi->SetValue("u_Color", redColor);
+		//mi->SetTexture("u_AlbedoMap", texture);
+		//squareMesh->SetMaterial(mi);
+
+
+		std::dynamic_pointer_cast<Mandas::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<Mandas::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+		
 		for (int y = 0; y < 20; y++)
 		{
 			for (int x = 0; x < 20; x++)
@@ -161,7 +177,7 @@ public:
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				//glm::mat4 transform = glm::translate(glm::mat4(1.0f), m_SquarePosition);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				Mandas::Renderer::Submit(m_BlueShader, m_SquareVA, transform);
+				Mandas::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}
 		}
 		
@@ -174,8 +190,8 @@ public:
 
 	virtual void OnImGuiRender() override
 	{
-		ImGui::Begin("Test");
-		ImGui::Text("Hello, world!");
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
 		ImGui::End();
 	}
 
@@ -184,11 +200,11 @@ public:
 	}
 
 private:
-	std::shared_ptr<Mandas::Shader> m_Shader;
-	std::shared_ptr<Mandas::VertexArray> m_VertexArray;
+	Mandas::Ref<Mandas::Shader> m_Shader;
+	Mandas::Ref<Mandas::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Mandas::Shader> m_BlueShader;
-	std::shared_ptr<Mandas::VertexArray> m_SquareVA;
+	Mandas::Ref<Mandas::Shader> m_FlatColorShader;
+	Mandas::Ref<Mandas::VertexArray> m_SquareVA;
 
 	Mandas::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
@@ -196,6 +212,8 @@ private:
 
 	float m_CameraRotation = 0.0f;
 	float m_CameraRotationSpeed = 50.0f;
+
+	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
 
 class Sandbox : public Mandas::Application

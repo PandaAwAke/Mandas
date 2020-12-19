@@ -6,7 +6,7 @@
 
 namespace Mandas {
 
-	Mandas::VertexArray* VertexArray::Create()
+	VertexArray* VertexArray::Create()
 	{
 		switch (Renderer::GetAPI())
 		{
