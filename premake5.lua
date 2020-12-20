@@ -18,6 +18,7 @@ IncludeDir["GLFW"] = "Mandas/vendor/GLFW/include"
 IncludeDir["Glad"] = "Mandas/vendor/Glad/include"
 IncludeDir["ImGui"] = "Mandas/vendor/ImGui"
 IncludeDir["glm"] = "Mandas/vendor/glm"
+IncludeDir["stb_image"] = "Mandas/vendor/stb_image"
 
 include "Mandas/vendor/GLFW"
 include "Mandas/vendor/Glad"
@@ -47,6 +48,8 @@ project "Mandas"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
@@ -58,7 +61,8 @@ project "Mandas"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links

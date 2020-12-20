@@ -39,18 +39,20 @@ public:
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 
-		float squareVertices[3 * 4] = {
-			-0.5f, -0.5f,  0.0f,
-			 0.5f, -0.5f,  0.0f,
-			 0.5f,  0.5f,  0.0f,
-			-0.5f,  0.5f,  0.0f
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f,  0.0f,  0.0f, 0.0f,
+			 0.5f, -0.5f,  0.0f,  1.0f, 0.0f,
+			 0.5f,  0.5f,  0.0f,  1.0f, 1.0f,
+			-0.5f,  0.5f,  0.0f,  0.0f, 1.0f
 		};
+
 		m_SquareVA.reset(Mandas::VertexArray::Create());
 		Mandas::Ref<Mandas::VertexBuffer> squareVB;
 		squareVB.reset(Mandas::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
-			{ Mandas::ShaderDataType::Float3, "a_Position" }
-			});
+			{ Mandas::ShaderDataType::Float3, "a_Position" },
+			{ Mandas::ShaderDataType::Float2, "a_TexCoord" }
+		});
 		// This should behind "SetLayout."
 		m_SquareVA->AddVertexBuffer(squareVB);
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
@@ -129,6 +131,45 @@ public:
 
 		m_FlatColorShader.reset(Mandas::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
 
+		std::string textureShaderVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+			
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
+			}
+		)";
+
+		std::string textureShaderFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+			
+			in vec2 v_TexCoord;
+			
+			uniform sampler2D u_Texture;
+			
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
+		m_TextureShader.reset(Mandas::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+
+		m_Texture = Mandas::Texture2D::Create("assets/textures/Checkerboard.png");
+	
+		std::dynamic_pointer_cast<Mandas::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<Mandas::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 	}
 	
 	void OnUpdate(Mandas::Timestep ts) override
@@ -181,7 +222,11 @@ public:
 			}
 		}
 		
-		Mandas::Renderer::Submit(m_Shader, m_VertexArray);
+		m_Texture->Bind();
+		Mandas::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+		// Triangle
+		//Mandas::Renderer::Submit(m_Shader, m_VertexArray);
 
 		Mandas::Renderer::EndScene();
 		
@@ -203,8 +248,10 @@ private:
 	Mandas::Ref<Mandas::Shader> m_Shader;
 	Mandas::Ref<Mandas::VertexArray> m_VertexArray;
 
-	Mandas::Ref<Mandas::Shader> m_FlatColorShader;
+	Mandas::Ref<Mandas::Shader> m_FlatColorShader, m_TextureShader;
 	Mandas::Ref<Mandas::VertexArray> m_SquareVA;
+
+	Mandas::Ref<Mandas::Texture2D> m_Texture;
 
 	Mandas::OrthographicCamera m_Camera;
 	glm::vec3 m_CameraPosition;
