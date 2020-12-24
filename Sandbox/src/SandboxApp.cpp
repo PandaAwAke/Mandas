@@ -6,6 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Mandas/Renderer/Shader.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
 class ExampleLayer : public Mandas::Layer
@@ -95,7 +96,7 @@ public:
 				color = v_Color;
 			}
 		)";
-		m_Shader.reset(Mandas::Shader::Create(vertexSrc, fragmentSrc));
+		m_Shader = Mandas::Shader::Create("VertexPosColor", vertexSrc, fragmentSrc);
 
 		std::string flatColorShaderVertexSrc = R"(
 			#version 330 core
@@ -129,15 +130,17 @@ public:
 			}
 		)";
 
-		m_FlatColorShader.reset(Mandas::Shader::Create(flatColorShaderVertexSrc, flatColorShaderFragmentSrc));
+		m_FlatColorShader = Mandas::Shader::Create("FlatColor", flatColorShaderVertexSrc, flatColorShaderFragmentSrc);
 
-		m_TextureShader.reset(Mandas::Shader::Create("assets/shaders/Texture.glsl"));
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
+
+		//m_TextureShader = Mandas::Shader::Create("assets/shaders/Texture.glsl");
 
 		m_Texture = Mandas::Texture2D::Create("assets/textures/Checkerboard.png");
 		m_LogoTexture = Mandas::Texture2D::Create("assets/textures/ChernoLogo.png");
 	
-		std::dynamic_pointer_cast<Mandas::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<Mandas::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<Mandas::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Mandas::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 	
 	void OnUpdate(Mandas::Timestep ts) override
@@ -175,7 +178,6 @@ public:
 		//mi->SetTexture("u_AlbedoMap", texture);
 		//squareMesh->SetMaterial(mi);
 
-
 		std::dynamic_pointer_cast<Mandas::OpenGLShader>(m_FlatColorShader)->Bind();
 		std::dynamic_pointer_cast<Mandas::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 		
@@ -189,11 +191,13 @@ public:
 				Mandas::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}
 		}
+
+		auto textureShader = m_ShaderLibrary.Get("Texture");
 		
 		m_Texture->Bind();
-		Mandas::Renderer::Submit(m_TextureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		Mandas::Renderer::Submit(textureShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 		m_LogoTexture->Bind();
-		Mandas::Renderer::Submit(m_TextureShader, m_SquareVA, 
+		Mandas::Renderer::Submit(textureShader, m_SquareVA,
 			//glm::translate(glm::mat4(1.0f), glm::vec3(0.25f, -0.25f, 0.0f)) * 
 			glm::scale(glm::mat4(1.0f), glm::vec3(1.5f))
 		);
@@ -218,10 +222,11 @@ public:
 	}
 
 private:
+	Mandas::ShaderLibrary m_ShaderLibrary;
 	Mandas::Ref<Mandas::Shader> m_Shader;
 	Mandas::Ref<Mandas::VertexArray> m_VertexArray;
 
-	Mandas::Ref<Mandas::Shader> m_FlatColorShader, m_TextureShader;
+	Mandas::Ref<Mandas::Shader> m_FlatColorShader;
 	Mandas::Ref<Mandas::VertexArray> m_SquareVA;
 
 	Mandas::Ref<Mandas::Texture2D> m_Texture, m_LogoTexture;
