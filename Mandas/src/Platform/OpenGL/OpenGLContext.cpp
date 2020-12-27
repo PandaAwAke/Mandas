@@ -1,6 +1,5 @@
 #include "mdpch.h"
 #include "OpenGLContext.h"
-#include "Mandas/Log.h"
 
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>

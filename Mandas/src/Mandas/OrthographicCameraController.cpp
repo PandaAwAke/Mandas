@@ -1,8 +1,8 @@
 #include "mdpch.h"
 #include "OrthographicCameraController.h"
 
-#include "Mandas/Input.h"
-#include "Mandas/KeyCodes.h"
+#include "Mandas/Core/Input.h"
+#include "Mandas/Core/KeyCodes.h"
 
 namespace Mandas {
 

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Mandas/Core.h"
+#include "Mandas/Core/Core.h"
 
 namespace Mandas {
 

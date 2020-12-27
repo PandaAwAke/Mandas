@@ -2,7 +2,7 @@
 #include "WindowsInput.h"
 
 #include <GLFW/glfw3.h>
-#include "Mandas/Application.h"
+#include "Mandas/Core/Application.h"
 
 namespace Mandas {
 

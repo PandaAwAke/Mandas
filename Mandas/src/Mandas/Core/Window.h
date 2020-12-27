@@ -2,7 +2,7 @@
 
 #include "mdpch.h"
 
-#include "Mandas/Core.h"
+#include "Mandas/Core/Core.h"
 #include "Mandas/Events/Event.h"
 
 namespace Mandas {

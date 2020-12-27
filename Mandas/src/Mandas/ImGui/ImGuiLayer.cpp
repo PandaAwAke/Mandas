@@ -8,7 +8,7 @@
 #include "examples/imgui_impl_opengl3.h"
 
 
-#include "Mandas/Application.h"
+#include "Mandas/Core/Application.h"
 
 // TEMPORARY
 #include <GLFW/glfw3.h>

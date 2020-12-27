@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Mandas/Input.h"
+#include "Mandas/Core/Input.h"
 
 namespace Mandas {
 

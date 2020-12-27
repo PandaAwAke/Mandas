@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Mandas/Core.h"
+#include "Mandas/Core/Core.h"
 #include "Mandas/Core/Timestep.h"
 #include "Mandas/Events/Event.h"
 

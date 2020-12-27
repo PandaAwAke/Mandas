@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "Mandas/Core.h"
+#include "Mandas/Core/Core.h"
 
 namespace Mandas {
 

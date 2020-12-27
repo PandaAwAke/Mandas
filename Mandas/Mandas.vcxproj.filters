@@ -57,17 +57,38 @@
     <ClInclude Include="src\Mandas.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\Mandas\Application.h">
-      <Filter>src\Mandas</Filter>
+    <ClInclude Include="src\Mandas\Core\Application.h">
+      <Filter>src\Mandas\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Mandas\Core.h">
-      <Filter>src\Mandas</Filter>
+    <ClInclude Include="src\Mandas\Core\Core.h">
+      <Filter>src\Mandas\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mandas\Core\EntryPoint.h">
+      <Filter>src\Mandas\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mandas\Core\Input.h">
+      <Filter>src\Mandas\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mandas\Core\KeyCodes.h">
+      <Filter>src\Mandas\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mandas\Core\Layer.h">
+      <Filter>src\Mandas\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mandas\Core\LayerStack.h">
+      <Filter>src\Mandas\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mandas\Core\Log.h">
+      <Filter>src\Mandas\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mandas\Core\MouseButtonCodes.h">
+      <Filter>src\Mandas\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Mandas\Core\Timestep.h">
       <Filter>src\Mandas\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Mandas\EntryPoint.h">
-      <Filter>src\Mandas</Filter>
+    <ClInclude Include="src\Mandas\Core\Window.h">
+      <Filter>src\Mandas\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\Mandas\Events\ApplicationEvent.h">
       <Filter>src\Mandas\Events</Filter>
@@ -84,22 +105,7 @@
     <ClInclude Include="src\Mandas\ImGui\ImGuiLayer.h">
       <Filter>src\Mandas\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\Mandas\Input.h">
-      <Filter>src\Mandas</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Mandas\KeyCodes.h">
-      <Filter>src\Mandas</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Mandas\Layer.h">
-      <Filter>src\Mandas</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Mandas\LayerStack.h">
-      <Filter>src\Mandas</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Mandas\Log.h">
-      <Filter>src\Mandas</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Mandas\MouseButtonCodes.h">
+    <ClInclude Include="src\Mandas\OrthographicCameraController.h">
       <Filter>src\Mandas</Filter>
     </ClInclude>
     <ClInclude Include="src\Mandas\Renderer\Buffer.h">
@@ -128,9 +134,6 @@
     </ClInclude>
     <ClInclude Include="src\Mandas\Renderer\VertexArray.h">
       <Filter>src\Mandas\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Mandas\Window.h">
-      <Filter>src\Mandas</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
@@ -1401,11 +1404,19 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Mandas\OrthographicCameraController.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Mandas\Application.cpp">
-      <Filter>src\Mandas</Filter>
+    <ClCompile Include="src\Mandas\Core\Application.cpp">
+      <Filter>src\Mandas\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mandas\Core\Layer.cpp">
+      <Filter>src\Mandas\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mandas\Core\LayerStack.cpp">
+      <Filter>src\Mandas\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mandas\Core\Log.cpp">
+      <Filter>src\Mandas\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\Mandas\ImGui\ImGuiBuild.cpp">
       <Filter>src\Mandas\ImGui</Filter>
@@ -1413,13 +1424,7 @@
     <ClCompile Include="src\Mandas\ImGui\ImGuiLayer.cpp">
       <Filter>src\Mandas\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\Mandas\Layer.cpp">
-      <Filter>src\Mandas</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Mandas\LayerStack.cpp">
-      <Filter>src\Mandas</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Mandas\Log.cpp">
+    <ClCompile Include="src\Mandas\OrthographicCameraController.cpp">
       <Filter>src\Mandas</Filter>
     </ClCompile>
     <ClCompile Include="src\Mandas\Renderer\Buffer.cpp">
@@ -1476,6 +1481,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Mandas\OrthographicCameraController.cpp" />
   </ItemGroup>
 </Project>

@@ -2,15 +2,15 @@
 
 // For use by Mandas Applications
 
-#include "Mandas/Application.h"
-#include "Mandas/Layer.h"
-#include "Mandas/Log.h"
+#include "Mandas/Core/Application.h"
+#include "Mandas/Core/Layer.h"
+#include "Mandas/Core/Log.h"
 
 #include "Mandas/Core/Timestep.h"
 
-#include "Mandas/Input.h"
-#include "Mandas/KeyCodes.h"
-#include "Mandas/MouseButtonCodes.h"
+#include "Mandas/Core/Input.h"
+#include "Mandas/Core/KeyCodes.h"
+#include "Mandas/Core/MouseButtonCodes.h"
 #include "Mandas/OrthographicCameraController.h"
 
 #include "Mandas/ImGui/ImGuiLayer.h"
@@ -29,5 +29,5 @@
 
 
 // --- Entry Point ------------------------
-#include "Mandas/EntryPoint.h"
+#include "Mandas/Core/EntryPoint.h"
 // ----------------------------------------
