@@ -13,7 +13,7 @@ class ExampleLayer : public Mandas::Layer
 {
 public:
 	ExampleLayer()
-		: Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+		: Layer("Example"), m_CameraController(1280.0f / 720.0f, true)
 	{
 		m_VertexArray.reset(Mandas::VertexArray::Create());
 
@@ -145,28 +145,21 @@ public:
 	
 	void OnUpdate(Mandas::Timestep ts) override
 	{
-		if (Mandas::Input::IsKeyPressed(MD_KEY_LEFT))
-			m_CameraPosition.x -= m_CameraMoveSpeed * ts;
-		else if (Mandas::Input::IsKeyPressed(MD_KEY_RIGHT))
-			m_CameraPosition.x += m_CameraMoveSpeed * ts;
+		// Update
+		m_CameraController.OnUpdate(ts);
 
-		if (Mandas::Input::IsKeyPressed(MD_KEY_DOWN))
-			m_CameraPosition.y -= m_CameraMoveSpeed * ts;
-		else if (Mandas::Input::IsKeyPressed(MD_KEY_UP))
-			m_CameraPosition.y += m_CameraMoveSpeed * ts;
-
-		if (Mandas::Input::IsKeyPressed(MD_KEY_A))
-			m_CameraRotation += m_CameraRotationSpeed * ts;
-		if (Mandas::Input::IsKeyPressed(MD_KEY_D))
-			m_CameraRotation -= m_CameraRotationSpeed * ts;
-
+		// Render
 		Mandas::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Mandas::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPosition);
-		m_Camera.SetRotation(m_CameraRotation);
+		Mandas::Renderer::BeginScene(m_CameraController.GetCamera());
+		//Mandas::Renderer::BeginScene(m_Scene);
+		//Mandas::Renderer2D::BeginScene(m_Camera);
+		//Mandas::Renderer2D::DrawQuad();
+		//Mandas::Renderer2D::DrawCircle(); // fill circle
+		//Mandas::Renderer2D::Draw();
 
-		Mandas::Renderer::BeginScene(m_Camera);
+
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 		
@@ -217,8 +210,10 @@ public:
 		ImGui::End();
 	}
 
-	void OnEvent(Mandas::Event& event) override
+	void OnEvent(Mandas::Event& e) override
 	{
+		m_CameraController.OnEvent(e);
+
 	}
 
 private:
@@ -231,12 +226,7 @@ private:
 
 	Mandas::Ref<Mandas::Texture2D> m_Texture, m_LogoTexture;
 
-	Mandas::OrthographicCamera m_Camera;
-	glm::vec3 m_CameraPosition;
-	float m_CameraMoveSpeed = 2.0f;
-
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 50.0f;
+	Mandas::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
