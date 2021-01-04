@@ -23,6 +23,7 @@ namespace Mandas {
 		MD_CORE_INFO("   Renderer : {0}", glGetString(GL_RENDERER));
 		MD_CORE_INFO("   Version : {0}", glGetString(GL_VERSION));
 
+		MD_CORE_ASSERT(GLVersion.major > 4 || (GLVersion.major == 4 && GLVersion.minor >= 5), "Mandas requires at least OpenGL version 4.5!");
 	}
 
 	void OpenGLContext::SwapBuffers()

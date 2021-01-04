@@ -1,5 +1,6 @@
 #include "mdpch.h"
 #include <Mandas.h>
+#include <Mandas/Core/EntryPoint.h>
 
 #include "ImGui/imgui.h"
 
@@ -9,13 +10,15 @@
 #include "Mandas/Renderer/Shader.h"
 #include "Platform/OpenGL/OpenGLShader.h"
 
+#include "Sandbox2D.h"
+
 class ExampleLayer : public Mandas::Layer
 {
 public:
 	ExampleLayer()
 		: Layer("Example"), m_CameraController(1280.0f / 720.0f, true)
 	{
-		m_VertexArray.reset(Mandas::VertexArray::Create());
+		m_VertexArray = Mandas::VertexArray::Create();
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f,  0.0f,  0.8f,  0.2f,  0.8f,  1.0f,
@@ -47,7 +50,7 @@ public:
 			-0.5f,  0.5f,  0.0f,  0.0f, 1.0f
 		};
 
-		m_SquareVA.reset(Mandas::VertexArray::Create());
+		m_SquareVA = Mandas::VertexArray::Create();
 		Mandas::Ref<Mandas::VertexBuffer> squareVB;
 		squareVB.reset(Mandas::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 		squareVB->SetLayout({
@@ -237,6 +240,7 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox()

@@ -26,8 +26,3 @@
 
 #include "Mandas/Renderer/OrthographicCamera.h"
 // ----------------------------------------
-
-
-// --- Entry Point ------------------------
-#include "Mandas/Core/EntryPoint.h"
-// ----------------------------------------
