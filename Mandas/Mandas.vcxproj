@@ -140,6 +140,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Mandas\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Mandas.h" />
     <ClInclude Include="src\Mandas\Core\Application.h" />
     <ClInclude Include="src\Mandas\Core\Core.h" />
@@ -157,7 +158,7 @@
     <ClInclude Include="src\Mandas\Events\KeyEvent.h" />
     <ClInclude Include="src\Mandas\Events\MouseEvent.h" />
     <ClInclude Include="src\Mandas\ImGui\ImGuiLayer.h" />
-    <ClInclude Include="src\Mandas\OrthographicCameraController.h" />
+    <ClInclude Include="src\Mandas\Renderer\OrthographicCameraController.h" />
     <ClInclude Include="src\Mandas\Renderer\Buffer.h" />
     <ClInclude Include="src\Mandas\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Mandas\Renderer\OrthographicCamera.h" />
@@ -592,13 +593,14 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Mandas\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\Mandas\Core\Application.cpp" />
     <ClCompile Include="src\Mandas\Core\Layer.cpp" />
     <ClCompile Include="src\Mandas\Core\LayerStack.cpp" />
     <ClCompile Include="src\Mandas\Core\Log.cpp" />
     <ClCompile Include="src\Mandas\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\Mandas\ImGui\ImGuiLayer.cpp" />
-    <ClCompile Include="src\Mandas\OrthographicCameraController.cpp" />
+    <ClCompile Include="src\Mandas\Renderer\OrthographicCameraController.cpp" />
     <ClCompile Include="src\Mandas\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Mandas\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\Mandas\Renderer\RenderCommand.cpp" />

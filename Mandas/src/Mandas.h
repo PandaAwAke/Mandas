@@ -11,12 +11,13 @@
 #include "Mandas/Core/Input.h"
 #include "Mandas/Core/KeyCodes.h"
 #include "Mandas/Core/MouseButtonCodes.h"
-#include "Mandas/OrthographicCameraController.h"
+#include "Mandas/Renderer/OrthographicCameraController.h"
 
 #include "Mandas/ImGui/ImGuiLayer.h"
 
 // --- Renderer ---------------------------
 #include "Mandas/Renderer/Renderer.h"
+#include "Mandas/Renderer/Renderer2D.h"
 #include "Mandas/Renderer/RenderCommand.h"
 
 #include "Mandas/Renderer/Buffer.h"
