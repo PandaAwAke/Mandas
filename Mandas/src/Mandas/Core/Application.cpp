@@ -15,6 +15,8 @@ namespace Mandas {
 
 	Application::Application()
 	{
+		MD_PROFILE_FUNCTION();
+
 		MD_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
@@ -30,23 +32,30 @@ namespace Mandas {
 
 	Application::~Application()
 	{
-
+		MD_PROFILE_FUNCTION();
+		
 	}
 
 	void Application::PushLayer(Layer* layer)
 	{
+		MD_PROFILE_FUNCTION();
+
 		m_LayerStack.PushLayer(layer);
 		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* layer)
 	{
+		MD_PROFILE_FUNCTION();
+
 		m_LayerStack.PushOverlay(layer);
 		layer->OnAttach();
 	}
 
 	void Application::OnEvent(Event& e)
 	{
+		MD_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
@@ -61,21 +70,33 @@ namespace Mandas {
 
 	void Application::Run()
 	{
+		MD_PROFILE_FUNCTION();
+
 		while (m_Running)
 		{
+			MD_PROFILE_SCOPE("RunLoop");
+
 			float time = (float)glfwGetTime(); // Platform::GetTime
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 
 			if (!m_Minimized)
 			{
-				for (Layer* layer : m_LayerStack)
-					layer->OnUpdate(timestep);
+				{
+					MD_PROFILE_SCOPE("LayerStack OnUpdate");
+
+					for (Layer* layer : m_LayerStack)
+						layer->OnUpdate(timestep);
+				}
 			}
 			
 			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
-				layer->OnImGuiRender();
+			{
+				MD_PROFILE_SCOPE("LayerStack OnImGuiRender");
+
+				for (Layer* layer : m_LayerStack)
+					layer->OnImGuiRender();
+			}
 			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
@@ -90,6 +111,8 @@ namespace Mandas {
 
 	bool Application::OnWindowResize(WindowResizeEvent& e)
 	{
+		MD_PROFILE_FUNCTION();
+
 		// Minimize still trigger this: and e.width == e.height == 0!
 		if (e.GetWidth() == 0 || e.GetHeight() == 0)
 		{

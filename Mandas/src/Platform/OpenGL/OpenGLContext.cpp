@@ -14,6 +14,8 @@ namespace Mandas {
 
 	void OpenGLContext::Init()
 	{
+		MD_PROFILE_FUNCTION();
+
 		glfwMakeContextCurrent(m_WindowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		MD_CORE_ASSERT(status, "Failed to initialize Glad!");
@@ -28,6 +30,8 @@ namespace Mandas {
 
 	void OpenGLContext::SwapBuffers()
 	{
+		MD_PROFILE_FUNCTION();
+
 		glfwSwapBuffers(m_WindowHandle);
 	}
 

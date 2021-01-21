@@ -140,6 +140,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Mandas\Debug\Instrumentor.h" />
     <ClInclude Include="src\Mandas\Renderer\Renderer2D.h" />
     <ClInclude Include="src\Mandas.h" />
     <ClInclude Include="src\Mandas\Core\Application.h" />

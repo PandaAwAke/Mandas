@@ -16,12 +16,14 @@ namespace Mandas {
 
 	void OrthographicCameraController::OnUpdate(Timestep ts)
 	{
+		MD_PROFILE_FUNCTION();
+
 		if (Input::IsKeyPressed(MD_KEY_A))
 		{
 			m_CameraPosition.x -= cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
 			m_CameraPosition.y -= sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
 		}
-		else if (Input::IsKeyPressed(MD_KEY_D))
+		if (Input::IsKeyPressed(MD_KEY_D))
 		{
 			m_CameraPosition.x += cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
 			m_CameraPosition.y += sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
@@ -32,7 +34,7 @@ namespace Mandas {
 			m_CameraPosition.x += -sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
 			m_CameraPosition.y += cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
 		}
-		else if (Input::IsKeyPressed(MD_KEY_S))
+		if (Input::IsKeyPressed(MD_KEY_S))
 		{
 			m_CameraPosition.x -= -sin(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
 			m_CameraPosition.y -= cos(glm::radians(m_CameraRotation)) * m_CameraTranslationSpeed * ts;
@@ -52,6 +54,8 @@ namespace Mandas {
 
 	void OrthographicCameraController::OnEvent(Event& e)
 	{
+		MD_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<MouseScrolledEvent>(MD_BIND_EVENT_FN(OrthographicCameraController::OnMouseScrolled));
 		dispatcher.Dispatch<WindowResizeEvent>(MD_BIND_EVENT_FN(OrthographicCameraController::OnWindowResized));
@@ -60,6 +64,8 @@ namespace Mandas {
 
 	bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent& e)
 	{
+		MD_PROFILE_FUNCTION();
+
 		m_ZoomLevel -= e.GetYOffset() * 0.2f;
 		m_ZoomLevel = std::max(m_ZoomLevel, 0.3f);
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);

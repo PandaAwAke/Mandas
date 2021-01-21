@@ -15,6 +15,8 @@
 
 #include "Mandas/Core/Log.h"
 
+#include "Mandas/Debug/Instrumentor.h"
+
 #ifdef MD_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif

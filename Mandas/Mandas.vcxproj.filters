@@ -1407,6 +1407,7 @@
     <ClInclude Include="src\Mandas\Renderer\OrthographicCameraController.h">
       <Filter>src\Mandas\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Mandas\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Mandas\Core\Application.cpp">

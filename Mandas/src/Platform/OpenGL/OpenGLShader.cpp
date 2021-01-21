@@ -20,6 +20,8 @@ namespace Mandas {
 
 	OpenGLShader::OpenGLShader(const std::string& filepath)
 	{
+		MD_PROFILE_FUNCTION();
+
 		std::string source = ReadFile(filepath);
 		auto shaderSources = PreProcess(source);
 		Compile(shaderSources);
@@ -36,6 +38,8 @@ namespace Mandas {
 	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
 		: m_Name(name)
 	{
+		MD_PROFILE_FUNCTION();
+
 		std::unordered_map<GLenum, std::string> sources;
 		sources[GL_VERTEX_SHADER] = vertexSrc;
 		sources[GL_FRAGMENT_SHADER] = fragmentSrc;
@@ -44,11 +48,15 @@ namespace Mandas {
 
 	OpenGLShader::~OpenGLShader()
 	{
+		MD_PROFILE_FUNCTION();
+
 		glDeleteProgram(m_RendererID);
 	}
 
 	std::string OpenGLShader::ReadFile(const std::string& filepath)
 	{
+		MD_PROFILE_FUNCTION();
+
 		std::string result;
 		std::ifstream in(filepath, std::ios::in | std::ios::binary);
 		if (in)
@@ -69,6 +77,8 @@ namespace Mandas {
 
 	std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& source)
 	{
+		MD_PROFILE_FUNCTION();
+
 		std::unordered_map<GLenum, std::string> shaderSources;
 
 		const char* typeToken = "#type";
@@ -94,6 +104,8 @@ namespace Mandas {
 
 	void OpenGLShader::Compile(std::unordered_map<GLenum, std::string>& shaderSources)
 	{
+		MD_PROFILE_FUNCTION();
+
 		// Vertex and fragment shaders are successfully compiled.
 		// Now time to link them together into a program.
 		// Get a program object.
@@ -183,31 +195,43 @@ namespace Mandas {
 
 	void OpenGLShader::Bind() const
 	{
+		MD_PROFILE_FUNCTION();
+
 		glUseProgram(m_RendererID);
 	}
 
 	void OpenGLShader::Unbind() const
 	{
+		MD_PROFILE_FUNCTION();
+
 		glUseProgram(0);
 	}
 
 	void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& value)
 	{
+		MD_PROFILE_FUNCTION();
+
 		UploadUniformFloat3(name, value);
 	}
 
 	void OpenGLShader::SetFloat4(const std::string& name, const glm::vec4& value)
 	{
+		MD_PROFILE_FUNCTION();
+
 		UploadUniformFloat4(name, value);
 	}
 
 	void OpenGLShader::SetMat4(const std::string& name, const glm::mat4& value)
 	{
+		MD_PROFILE_FUNCTION();
+
 		UploadUniformMat4(name, value);
 	}
 
 	void OpenGLShader::SetInt(const std::string& name, int value)
 	{
+		MD_PROFILE_FUNCTION();
+
 		UploadUniformInt(name, value);
 	}
 
