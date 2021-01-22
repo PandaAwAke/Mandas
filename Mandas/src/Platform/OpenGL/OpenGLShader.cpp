@@ -207,6 +207,13 @@ namespace Mandas {
 		glUseProgram(0);
 	}
 
+	void OpenGLShader::SetFloat(const std::string& name, float value)
+	{
+		MD_PROFILE_FUNCTION();
+
+		UploadUniformFloat(name, value);
+	}
+
 	void OpenGLShader::SetFloat3(const std::string& name, const glm::vec3& value)
 	{
 		MD_PROFILE_FUNCTION();
