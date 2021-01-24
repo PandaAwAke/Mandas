@@ -26,7 +26,7 @@ public:
 			 0.0f,  0.5f,  0.0f,  0.8f,  0.8f,  0.2f,  1.0f
 		};
 		Mandas::Ref<Mandas::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(Mandas::VertexBuffer::Create(vertices, sizeof(vertices)));
+		vertexBuffer = Mandas::VertexBuffer::Create(vertices, sizeof(vertices));
 
 		Mandas::BufferLayout layout = {
 			{ Mandas::ShaderDataType::Float3, "a_Position" },
@@ -39,7 +39,7 @@ public:
 
 		uint32_t indices[3] = { 0, 1, 2 };
 		Mandas::Ref<Mandas::IndexBuffer> indexBuffer;
-		indexBuffer.reset(Mandas::IndexBuffer::Create(indices, 3));
+		indexBuffer = Mandas::IndexBuffer::Create(indices, 3);
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
 
@@ -52,7 +52,7 @@ public:
 
 		m_SquareVA = Mandas::VertexArray::Create();
 		Mandas::Ref<Mandas::VertexBuffer> squareVB;
-		squareVB.reset(Mandas::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVB = Mandas::VertexBuffer::Create(squareVertices, sizeof(squareVertices));
 		squareVB->SetLayout({
 			{ Mandas::ShaderDataType::Float3, "a_Position" },
 			{ Mandas::ShaderDataType::Float2, "a_TexCoord" }
@@ -61,7 +61,7 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 		Mandas::Ref<Mandas::IndexBuffer> squareIB;
-		squareIB.reset(Mandas::IndexBuffer::Create(squareIndices, 6));
+		squareIB = Mandas::IndexBuffer::Create(squareIndices, 6);
 		m_SquareVA->SetIndexBuffer(squareIB);
 
 
@@ -239,7 +239,7 @@ class Sandbox : public Mandas::Application
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
 		PushLayer(new Sandbox2D());
 	}
 

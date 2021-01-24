@@ -113,7 +113,7 @@ namespace Mandas {
 	{
 		MD_PROFILE_FUNCTION();
 
-		// Minimize still trigger this: and e.width == e.height == 0!
+		// Minimize still triggers this: and e.width == e.height == 0!
 		if (e.GetWidth() == 0 || e.GetHeight() == 0)
 		{
 			m_Minimized = true;
