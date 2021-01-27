@@ -2,6 +2,8 @@
 
 #include <Mandas.h>
 
+#include "ParticleSystem.h"
+
 class Sandbox2D : public Mandas::Layer
 {
 public:
@@ -23,6 +25,8 @@ private:
 	Mandas::Ref<Mandas::Shader> m_FlatColorShader;
 
 	Mandas::Ref<Mandas::Texture2D> m_CheckerboardTexture;
+	Mandas::Ref<Mandas::Texture2D> m_SpriteSheet;
+	Mandas::Ref<Mandas::SubTexture2D> m_TextureTree1, m_TextureTree2, m_TextureStair;
 
 	struct ProfileResult
 	{
@@ -33,4 +37,7 @@ private:
 	std::vector<ProfileResult> m_ProfileResults;
 
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f, 1.0f };
+
+	ParticleSystem m_ParticleSystem;
+	ParticleProps m_Particle;
 };

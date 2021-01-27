@@ -23,6 +23,8 @@
 #include "Mandas/Renderer/Buffer.h"
 #include "Mandas/Renderer/Shader.h"
 #include "Mandas/Renderer/Texture.h"
+#include "Mandas/Renderer/SubTexture2D.h"
+
 #include "Mandas/Renderer/VertexArray.h"
 
 #include "Mandas/Renderer/OrthographicCamera.h"
