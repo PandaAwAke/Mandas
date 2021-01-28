@@ -23,6 +23,7 @@ private:
 	// Temporary
 	Mandas::Ref<Mandas::VertexArray> m_SquareVA;
 	Mandas::Ref<Mandas::Shader> m_FlatColorShader;
+	Mandas::Ref<Mandas::Framebuffer> m_Framebuffer;
 
 	Mandas::Ref<Mandas::Texture2D> m_CheckerboardTexture;
 	Mandas::Ref<Mandas::Texture2D> m_SpriteSheet;

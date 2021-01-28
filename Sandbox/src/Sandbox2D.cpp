@@ -30,6 +30,8 @@ void Sandbox2D::OnAttach()
 	MD_PROFILE_FUNCTION();
 
 	m_CheckerboardTexture = Mandas::Texture2D::Create("assets/textures/Checkerboard.png");
+	
+#if 0
 	m_SpriteSheet = Mandas::Texture2D::Create("assets/game/textures/tilemap_packed.png");
 
 	m_TextureTree1 = Mandas::SubTexture2D::CreateFromCoords(m_SpriteSheet, { 22, 7 }, { 16, 16 });
@@ -49,6 +51,11 @@ void Sandbox2D::OnAttach()
 	m_Particle.Velocity = { 0.0f, 0.0f };
 	m_Particle.VelocityVariation = { 3.0f, 1.0f };
 	m_Particle.Position = { 0.0f, 0.0f };
+#endif
+	Mandas::FramebufferSpecification fbSpec;
+	fbSpec.Width = 1280;
+	fbSpec.Height = 720;
+	m_Framebuffer = Mandas::Framebuffer::Create(fbSpec);
 
 }
 
@@ -74,11 +81,12 @@ void Sandbox2D::OnUpdate(Mandas::Timestep ts)
 	Mandas::Renderer2D::ResetStats();
 	{
 		MD_PROFILE_SCOPE("Renderer Prep");
+
+		m_Framebuffer->Bind();
+
 		Mandas::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Mandas::RenderCommand::Clear();
 	}
-
-#if 0
 	{
 		static float rotation = 0.0f;
 		rotation += ts * 50.0f;
@@ -104,9 +112,11 @@ void Sandbox2D::OnUpdate(Mandas::Timestep ts)
 			}
 		}
 		Mandas::Renderer2D::EndScene();
+		m_Framebuffer->Unbind();
 	}
-#endif
 
+
+#if 0
 	if (Mandas::Input::IsMouseButtonPressed(MD_MOUSE_BUTTON_LEFT))
 	{
 		auto [x, y] = Mandas::Input::GetMousePosition();
@@ -150,7 +160,7 @@ void Sandbox2D::OnUpdate(Mandas::Timestep ts)
 	//Mandas::Renderer2D::DrawQuad({ -2.0f, 0.0f, 0.0f }, { 3.0f, 3.0f }, m_TextureTree2);
 	//Mandas::Renderer2D::DrawQuad({ 1.0f, 0.0f, 0.5f }, { 1.0f, 1.0f }, m_TextureStair);
 	Mandas::Renderer2D::EndScene();
-
+#endif
 }
 
 void Sandbox2D::OnImGuiRender()
@@ -230,8 +240,8 @@ void Sandbox2D::OnImGuiRender()
 
 	ImGui::ColorEdit4("Square Color 2D", glm::value_ptr(m_SquareColor));
 
-	uint32_t textureID = m_CheckerboardTexture->GetRendererID();
-	ImGui::Image((void*)textureID, ImVec2{ 256.0f, 256.0f });
+	uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+	ImGui::Image((void*)textureID, ImVec2{ 1280.0f, 720.0f });
 
 	ImGui::End();
 

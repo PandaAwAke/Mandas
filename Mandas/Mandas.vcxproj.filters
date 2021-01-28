@@ -1409,6 +1409,8 @@
     </ClInclude>
     <ClInclude Include="src\Mandas\Debug\Instrumentor.h" />
     <ClInclude Include="src\Mandas\Renderer\SubTexture2D.h" />
+    <ClInclude Include="src\Mandas\Renderer\Framebuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Mandas\Core\Application.cpp">
@@ -1490,5 +1492,7 @@
       <Filter>src\Mandas\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Mandas\Renderer\SubTexture2D.cpp" />
+    <ClCompile Include="src\Mandas\Renderer\Framebuffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
   </ItemGroup>
 </Project>
