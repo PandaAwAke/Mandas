@@ -52,6 +52,11 @@ namespace Mandas {
 		layer->OnAttach();
 	}
 
+	void Application::Close()
+	{
+		m_Running = false;
+	}
+
 	void Application::OnEvent(Event& e)
 	{
 		MD_PROFILE_FUNCTION();
