@@ -9,6 +9,7 @@ class Sandbox : public Mandas::Application
 {
 public:
 	Sandbox()
+		: Application("Mandas Sandbox Test")
 	{
 		//PushLayer(new ExampleLayer());
 		PushLayer(new Sandbox2D());

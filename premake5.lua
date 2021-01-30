@@ -1,7 +1,7 @@
 workspace "Mandas"
 	architecture "x64"
 
-	startproject "Sandbox"
+	startproject "Mandas-Editor"
 
 	configurations
 	{
@@ -106,6 +106,59 @@ project "Mandas"
 
 project "Sandbox"
 	location "Sandbox"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
+
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	files
+	{
+		"%{prj.name}/src/**.h",
+		"%{prj.name}/src/**.cpp",
+	}
+
+	includedirs
+	{
+		"Mandas/vendor/spdlog/include",
+		"Mandas/src",
+		"Mandas/vendor",
+		"%{IncludeDir.glm}"
+	}
+
+	links
+	{
+		"Mandas"
+	}
+
+	filter "system:windows"
+		systemversion "latest"
+
+		defines
+		{
+			"MD_PLATFORM_WINDOWS",
+			"_CONSOLE"
+		}
+
+	filter "configurations:Debug"
+		defines "MD_DEBUG"
+		runtime "Debug"
+		symbols "on"
+
+	filter "configurations:Release"
+		defines "MD_RELEASE"
+		runtime "Release"
+		optimize "on"
+
+	filter "configurations:Dist"
+		defines "MD_DIST"
+		runtime "Release"
+		optimize "on"
+
+project "Mandas-Editor"
+	location "Mandas-Editor"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"

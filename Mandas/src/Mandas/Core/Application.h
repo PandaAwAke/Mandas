@@ -16,7 +16,7 @@ namespace Mandas {
 	class Application
 	{
 	public:
-		Application();
+		Application(const std::string& name = "Mandas Engine");
 		virtual ~Application();
 
 		void Run();

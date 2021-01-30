@@ -10,6 +10,9 @@
     <Filter Include="src\Mandas\Core">
       <UniqueIdentifier>{A89DE239-1429-50FE-1D3A-D3F28944ACFE}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Mandas\Debug">
+      <UniqueIdentifier>{C6AD4276-B2A6-61C8-DBD8-464DC73041D4}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Mandas\Events">
       <UniqueIdentifier>{34B92242-A0CF-20D8-E946-ACF9559CF15F}</UniqueIdentifier>
     </Filter>
@@ -90,6 +93,9 @@
     <ClInclude Include="src\Mandas\Core\Window.h">
       <Filter>src\Mandas\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\Mandas\Debug\Instrumentor.h">
+      <Filter>src\Mandas\Debug</Filter>
+    </ClInclude>
     <ClInclude Include="src\Mandas\Events\ApplicationEvent.h">
       <Filter>src\Mandas\Events</Filter>
     </ClInclude>
@@ -108,10 +114,16 @@
     <ClInclude Include="src\Mandas\Renderer\Buffer.h">
       <Filter>src\Mandas\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Mandas\Renderer\Framebuffer.h">
+      <Filter>src\Mandas\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Mandas\Renderer\GraphicsContext.h">
       <Filter>src\Mandas\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Mandas\Renderer\OrthographicCamera.h">
+      <Filter>src\Mandas\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mandas\Renderer\OrthographicCameraController.h">
       <Filter>src\Mandas\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Mandas\Renderer\RenderCommand.h">
@@ -120,10 +132,16 @@
     <ClInclude Include="src\Mandas\Renderer\Renderer.h">
       <Filter>src\Mandas\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Mandas\Renderer\Renderer2D.h">
+      <Filter>src\Mandas\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Mandas\Renderer\RendererAPI.h">
       <Filter>src\Mandas\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Mandas\Renderer\Shader.h">
+      <Filter>src\Mandas\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mandas\Renderer\SubTexture2D.h">
       <Filter>src\Mandas\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Mandas\Renderer\Texture.h">
@@ -136,6 +154,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h">
@@ -1401,16 +1422,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\Mandas\Renderer\Renderer2D.h">
-      <Filter>src\Mandas\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Mandas\Renderer\OrthographicCameraController.h">
-      <Filter>src\Mandas\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Mandas\Debug\Instrumentor.h" />
-    <ClInclude Include="src\Mandas\Renderer\SubTexture2D.h" />
-    <ClInclude Include="src\Mandas\Renderer\Framebuffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Mandas\Core\Application.cpp">
@@ -1434,7 +1445,13 @@
     <ClCompile Include="src\Mandas\Renderer\Buffer.cpp">
       <Filter>src\Mandas\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Mandas\Renderer\Framebuffer.cpp">
+      <Filter>src\Mandas\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Mandas\Renderer\OrthographicCamera.cpp">
+      <Filter>src\Mandas\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mandas\Renderer\OrthographicCameraController.cpp">
       <Filter>src\Mandas\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Mandas\Renderer\RenderCommand.cpp">
@@ -1443,10 +1460,16 @@
     <ClCompile Include="src\Mandas\Renderer\Renderer.cpp">
       <Filter>src\Mandas\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Mandas\Renderer\Renderer2D.cpp">
+      <Filter>src\Mandas\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\Mandas\Renderer\RendererAPI.cpp">
       <Filter>src\Mandas\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Mandas\Renderer\Shader.cpp">
+      <Filter>src\Mandas\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mandas\Renderer\SubTexture2D.cpp">
       <Filter>src\Mandas\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Mandas\Renderer\Texture.cpp">
@@ -1459,6 +1482,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp">
@@ -1485,14 +1511,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\Mandas\Renderer\Renderer2D.cpp">
-      <Filter>src\Mandas\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Mandas\Renderer\OrthographicCameraController.cpp">
-      <Filter>src\Mandas\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Mandas\Renderer\SubTexture2D.cpp" />
-    <ClCompile Include="src\Mandas\Renderer\Framebuffer.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
   </ItemGroup>
 </Project>
