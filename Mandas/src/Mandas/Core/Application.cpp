@@ -33,7 +33,6 @@ namespace Mandas {
 	Application::~Application()
 	{
 		MD_PROFILE_FUNCTION();
-		
 	}
 
 	void Application::PushLayer(Layer* layer)

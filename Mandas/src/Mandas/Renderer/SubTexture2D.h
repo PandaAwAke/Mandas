@@ -9,6 +9,8 @@ namespace Mandas {
 	class SubTexture2D
 	{
 	public:
+		virtual ~SubTexture2D() = default;
+
 		SubTexture2D(const Ref<Texture2D>& texture, const glm::vec2& min, const glm::vec2& max);
 	
 		inline const Ref<Texture2D> GetTexture() const { return m_Texture; }

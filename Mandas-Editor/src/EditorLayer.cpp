@@ -40,7 +40,8 @@ namespace Mandas {
 		// Update
 		{
 			MD_PROFILE_SCOPE("CameraController::OnUpdate");
-			m_CameraController.OnUpdate(ts);
+			if (m_ViewportFocused)
+				m_CameraController.OnUpdate(ts);
 		}
 
 		// Render
@@ -167,6 +168,12 @@ namespace Mandas {
 			// Viewport
 			ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0, 0 });
 			ImGui::Begin("Viewport");
+
+			m_ViewportFocused = ImGui::IsWindowFocused();
+			m_ViewportHovered = ImGui::IsWindowHovered();
+
+			Application::Get().GetImGuiLayer()->BlockEvents(!m_ViewportFocused || !m_ViewportHovered);
+
 			ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 
 			if (m_ViewportSize != *((glm::vec2*) & viewportPanelSize))
@@ -178,6 +185,7 @@ namespace Mandas {
 			}
 
 			uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
+			//ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y });
 			ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y }, ImVec2{ 0, 1 }, ImVec2{ 1, 0 });
 			ImGui::End();
 			ImGui::PopStyleVar();
