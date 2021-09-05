@@ -15,6 +15,10 @@
 
 #include "Mandas/ImGui/ImGuiLayer.h"
 
+#include "Mandas/Scene/Scene.h"
+#include "Mandas/Scene/Entity.h"
+#include "Mandas/Scene/Components.h"
+
 // --- Renderer ---------------------------
 #include "Mandas/Renderer/Renderer.h"
 #include "Mandas/Renderer/Renderer2D.h"

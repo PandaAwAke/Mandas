@@ -24,6 +24,13 @@ namespace Mandas {
 		Ref<Shader> m_FlatColorShader;
 		Ref<Framebuffer> m_Framebuffer;
 
+		Ref<Scene> m_ActiveScene;
+		Entity m_SquareEntity;
+		Entity m_CameraEntity;
+		Entity m_SecondCamera;
+
+		bool m_PrimaryCamera = true;
+
 		Ref<Texture2D> m_CheckerboardTexture;
 		//Ref<Texture2D> m_SpriteSheet;
 		//Ref<SubTexture2D> m_TextureTree1, m_TextureTree2, m_TextureStair;

@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>mdpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>MD_PLATFORM_WINDOWS;MD_BUILD_DLL;_CONSOLE;GLFW_INCLUDE_NONE;MD_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\ImGui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\ImGui;vendor\glm;vendor\stb_image;vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -97,7 +97,7 @@
       <PrecompiledHeaderFile>mdpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>MD_PLATFORM_WINDOWS;MD_BUILD_DLL;_CONSOLE;GLFW_INCLUDE_NONE;MD_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\ImGui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\ImGui;vendor\glm;vendor\stb_image;vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -121,7 +121,7 @@
       <PrecompiledHeaderFile>mdpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>MD_PLATFORM_WINDOWS;MD_BUILD_DLL;_CONSOLE;GLFW_INCLUDE_NONE;MD_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\ImGui;vendor\glm;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\Glad\include;vendor\ImGui;vendor\glm;vendor\stb_image;vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -140,6 +140,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Mandas\Scene\SceneCamera.h" />
     <ClInclude Include="src\Mandas.h" />
     <ClInclude Include="src\Mandas\Core\Application.h" />
     <ClInclude Include="src\Mandas\Core\Core.h" />
@@ -159,6 +160,7 @@
     <ClInclude Include="src\Mandas\Events\MouseEvent.h" />
     <ClInclude Include="src\Mandas\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\Mandas\Renderer\Buffer.h" />
+    <ClInclude Include="src\Mandas\Renderer\Camera.h" />
     <ClInclude Include="src\Mandas\Renderer\Framebuffer.h" />
     <ClInclude Include="src\Mandas\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\Mandas\Renderer\OrthographicCamera.h" />
@@ -171,6 +173,9 @@
     <ClInclude Include="src\Mandas\Renderer\SubTexture2D.h" />
     <ClInclude Include="src\Mandas\Renderer\Texture.h" />
     <ClInclude Include="src\Mandas\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Mandas\Scene\Components.h" />
+    <ClInclude Include="src\Mandas\Scene\Entity.h" />
+    <ClInclude Include="src\Mandas\Scene\Scene.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
@@ -615,6 +620,10 @@
     <ClCompile Include="src\Mandas\Renderer\SubTexture2D.cpp" />
     <ClCompile Include="src\Mandas\Renderer\Texture.cpp" />
     <ClCompile Include="src\Mandas\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Mandas\Scene\Components.cpp" />
+    <ClCompile Include="src\Mandas\Scene\Entity.cpp" />
+    <ClCompile Include="src\Mandas\Scene\Scene.cpp" />
+    <ClCompile Include="src\Mandas\Scene\SceneCamera.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />

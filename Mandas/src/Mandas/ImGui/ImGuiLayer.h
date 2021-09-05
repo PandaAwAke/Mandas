@@ -15,7 +15,7 @@ namespace Mandas {
 
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
-		void OnEvent(Event& event) override;
+		void OnEvent(Event& e) override;
 		virtual void OnImGuiRender() override;
 		
 		void Begin();

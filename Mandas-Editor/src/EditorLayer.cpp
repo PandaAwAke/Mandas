@@ -1,5 +1,7 @@
 #include "EditorLayer.h"
 
+#include "entt.hpp"
+
 #include "ImGui/imgui.h"
 
 #include <glm/gtc/type_ptr.hpp>
@@ -23,6 +25,20 @@ namespace Mandas {
 		fbSpec.Height = 720;
 		m_Framebuffer = Framebuffer::Create(fbSpec);
 
+		m_ActiveScene = CreateRef<Scene>();
+
+		// Entity
+		auto square = m_ActiveScene->CreateEntity("Square");
+		square.AddComponent<SpriteRendererComponent>(glm::vec4{ 0.0f, 1.0f, 0.0f, 1.0f });
+
+		m_SquareEntity = square;
+
+		m_CameraEntity = m_ActiveScene->CreateEntity("Camera Entity");
+		m_CameraEntity.AddComponent<CameraComponent>();
+		
+		m_SecondCamera = m_ActiveScene->CreateEntity("Clip-Space Camera Entity");
+		auto& cc = m_SecondCamera.AddComponent<CameraComponent>();
+		cc.Primary = false;
 	}
 
 	void EditorLayer::OnDetach()
@@ -35,52 +51,32 @@ namespace Mandas {
 	{
 		MD_PROFILE_FUNCTION();
 
-		//printf("Frame timestep: %f (%f fps)\n", ts.GetSeconds(), 1.0f / ts);
-
-		// Update
+		// Resize
+		if (FramebufferSpecification spec = m_Framebuffer->GetSpecification();
+			m_ViewportSize.x > 0.0f && m_ViewportSize.y > 0.0f && // Zero sized framebuffer is invalid
+			(spec.Width != m_ViewportSize.x || spec.Height != m_ViewportSize.y))
 		{
-			MD_PROFILE_SCOPE("CameraController::OnUpdate");
-			if (m_ViewportFocused)
-				m_CameraController.OnUpdate(ts);
+			m_Framebuffer->Resize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
+			m_CameraController.OnResize(m_ViewportSize.x, m_ViewportSize.y);
+
+			m_ActiveScene->OnViewportResize((uint32_t)m_ViewportSize.x, (uint32_t)m_ViewportSize.y);
 		}
+
+
+		// Update Camera Controller
+		if (m_ViewportFocused)
+			m_CameraController.OnUpdate(ts);
 
 		// Render
 		Renderer2D::ResetStats();
-		{
-			MD_PROFILE_SCOPE("Renderer Prep");
+		m_Framebuffer->Bind();
+		RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
+		RenderCommand::Clear();
 
-			m_Framebuffer->Bind();
+		// Update Scene
+		m_ActiveScene->OnUpdate(ts);
 
-			RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
-			RenderCommand::Clear();
-		}
-		{
-			static float rotation = 0.0f;
-			rotation += ts * 50.0f;
-
-			MD_PROFILE_SCOPE("Renderer Draw");
-			Renderer2D::BeginScene(m_CameraController.GetCamera());
-
-			Renderer2D::DrawRotatedQuad({ 1.0f, 0.0f }, { 0.8f, 0.8f }, glm::radians(30.0f), { 0.8f,0.2f,0.3f,1.0f });
-			Renderer2D::DrawQuad({ -1.0f, 0.0f }, { 0.8f, 0.8f }, { 0.8f,0.2f,0.3f,1.0f });
-			Renderer2D::DrawQuad({ 0.5f, -0.5f }, { 0.5f, 0.75f }, { 0.2f,0.3f,0.8f,1.0f });
-			Renderer2D::DrawQuad({ 0.0f, 0.0f, -0.1f }, { 20.0f, 20.0f }, m_CheckerboardTexture, 10.0f);
-			//Renderer2D::DrawRotatedQuad({ 0.0f, 0.0f, 0.0f }, { 1.0f, 1.0f }, 45.0f, m_CheckerboardTexture, 20.0f);
-			Renderer2D::DrawRotatedQuad({ -2.0f, 0.0f, 0.0f }, { 1.0f, 1.0f }, glm::radians(rotation), m_CheckerboardTexture, 10.0f, { 1.0f,0.9f,0.9f,1.0f });
-			Renderer2D::EndScene();
-
-			Renderer2D::BeginScene(m_CameraController.GetCamera());
-			for (float y = -5.0f; y < 5.0f; y += 0.5f)
-			{
-				for (float x = -5.0f; x < 5.0f; x += 0.5f)
-				{
-					glm::vec4 color = { (x + 5.0f) / 10.0f, 0.4f, (y + 5.0f) / 10.0f, 0.5f };
-					Renderer2D::DrawQuad({ x, y }, { 0.45f, 0.45f }, color);
-				}
-			}
-			Renderer2D::EndScene();
-			m_Framebuffer->Unbind();
-		}
+		m_Framebuffer->Unbind();
 
 	}
 
@@ -154,6 +150,7 @@ namespace Mandas {
 
 			// Settings
 			ImGui::Begin("Settings");
+
 			auto stats = Renderer2D::GetStats();
 			ImGui::Text("Renderer2D Stats:");
 			ImGui::Text("Draw Calls: %d", stats.DrawCalls);
@@ -161,7 +158,34 @@ namespace Mandas {
 			ImGui::Text("Vertices: %d", stats.GetTotalVertexCount());
 			ImGui::Text("Indices: %d", stats.GetTotalIndexCount());
 
-			ImGui::ColorEdit4("Square Color 2D", glm::value_ptr(m_SquareColor));
+			if (m_SquareEntity)
+			{
+				ImGui::Separator();
+				auto& tag = m_SquareEntity.GetComponent<TagComponent>().Tag;
+				ImGui::Text("%s", tag.c_str());
+
+				auto& squareColor = m_SquareEntity.GetComponent<SpriteRendererComponent>().Color;
+				ImGui::ColorEdit4("Square Color", glm::value_ptr(squareColor));
+				ImGui::Separator();
+			}
+
+			ImGui::DragFloat3("Camera Transform",
+				glm::value_ptr(m_CameraEntity.GetComponent<TransformComponent>().Transform[3]));
+
+			if (ImGui::Checkbox("Camera A", &m_PrimaryCamera))
+			{
+				m_CameraEntity.GetComponent<CameraComponent>().Primary = m_PrimaryCamera;
+				m_SecondCamera.GetComponent<CameraComponent>().Primary = !m_PrimaryCamera;
+			}
+
+			{
+				auto& camera = m_SecondCamera.GetComponent<CameraComponent>().Camera;
+				float orthoSize = camera.GetOrthographicSize();
+				if (ImGui::DragFloat("Second Camera Ortho Size", &orthoSize))
+					camera.SetOrthographicSize(orthoSize);
+			}
+
+			
 			ImGui::End();
 
 
@@ -176,13 +200,7 @@ namespace Mandas {
 
 			ImVec2 viewportPanelSize = ImGui::GetContentRegionAvail();
 
-			if (m_ViewportSize != *((glm::vec2*) & viewportPanelSize))
-			{
-				m_Framebuffer->Resize((uint32_t)viewportPanelSize.x, (uint32_t)viewportPanelSize.y);
-				m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
-
-				m_CameraController.OnResize(viewportPanelSize.x, viewportPanelSize.y);
-			}
+			m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
 
 			uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
 			//ImGui::Image((void*)textureID, ImVec2{ m_ViewportSize.x, m_ViewportSize.y });

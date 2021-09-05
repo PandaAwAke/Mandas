@@ -19,6 +19,7 @@ IncludeDir["Glad"] = "Mandas/vendor/Glad/include"
 IncludeDir["ImGui"] = "Mandas/vendor/ImGui"
 IncludeDir["glm"] = "Mandas/vendor/glm"
 IncludeDir["stb_image"] = "Mandas/vendor/stb_image"
+IncludeDir["entt"] = "Mandas/vendor/entt/include"
 
 include "Mandas/vendor/GLFW"
 include "Mandas/vendor/Glad"
@@ -62,7 +63,8 @@ project "Mandas"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}"
 	}
 
 	links
@@ -125,7 +127,8 @@ project "Sandbox"
 		"Mandas/vendor/spdlog/include",
 		"Mandas/src",
 		"Mandas/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links
@@ -178,7 +181,8 @@ project "Mandas-Editor"
 		"Mandas/vendor/spdlog/include",
 		"Mandas/src",
 		"Mandas/vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links

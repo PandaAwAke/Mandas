@@ -90,8 +90,9 @@ namespace Mandas {
 	{
 		MD_PROFILE_FUNCTION();
 
-		m_AspectRatio = (float)e.GetWidth() / (float)e.GetHeight();
-		CalculateView();
+		// For ImGui Use, here we temporarily comment this
+		//m_AspectRatio = (float)e.GetWidth() / (float)e.GetHeight();
+		//CalculateView();
 
 		return false;
 	}
